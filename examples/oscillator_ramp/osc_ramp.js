@@ -19,7 +19,7 @@
 		//the frequency signal
 		var frequency = new Tone.Signal(0.5);
 		//the move the 0 to 1 value into frequency range
-		var scale = new Tone.ScaleExp(110, 440);
+		var scale = new Tone.ScaleExp(11, 440);
 
 		//multiply the frequency by 2.5 to get a 10th above
 		var mult = new Tone.Multiply(2.5);
