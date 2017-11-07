@@ -1,2 +1,3 @@
 # ToneJs_Examples
-Repo containing examples using the Tone.js library 
+This repo contains examples of the [Tone.js](https://tonejs.github.io/) library.
+
