@@ -10,13 +10,17 @@ var synth = new Tone.Synth({
     "type" : "sawtooth"
   }
 });
+
 synth.toMaster();
 synth.send("reverb", -10);
 
 //Tone js Effects//
+
 var reverb = new Tone.Freeverb(0.8, 4000).receive("reverb").toMaster();
 var delay = new Tone.FeedbackDelay(beat[1],0.9).receive("delay").toMaster();
+
 //Tone js Transport//
+
 Tone.Transport.bpm.value = 160;
 Tone.Transport.scheduleRepeat(function(time){
    counter++;
