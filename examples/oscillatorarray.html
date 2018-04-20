@@ -19,7 +19,7 @@
 		  //Single Noise Oscillator//
 		  var noise = new Tone.Noise().toMaster();
 		  noise.start();
-		  noise.volume.value = -20;
+		  noise.volume.value = -20; //initial level
 		  noise.send("reverb");
 		  noise.send("delay");
 
@@ -41,10 +41,10 @@
 		  var delay = new Tone.FeedbackDelay(beat[1],0.75).receive("delay").toMaster();
 
 		  //Tone js Transport//
-		  Tone.Master.volume.value = -40;
+		  Tone.Master.volume.value = -20;
 		  Tone.Master.bpm = 160;
 
-		  //Logic//
+		  //Logic Automation//
 
 		  function loopCallback(time){
 		      counter++;
@@ -55,7 +55,7 @@
 		          var vIndex = -Math.round(Math.random()*30);
 		          oscillators[index].frequency.rampTo(baseFreq * r, 5)
 		          oscillators[index].volume.rampTo(vIndex, 0.4)
-		          noise.volume.rampTo(vIndex, 1);
+		          noise.volume.rampTo(vIndex - 20, 1);
 		          console.log("Ramp osc at index: " + index + " volume " + vIndex );
 		        }
 		      }
@@ -64,15 +64,17 @@
 		    loop.start(0);
 		    Tone.Transport.start(0);
 
-		//note: to change all frequencies//
-		// window.addEventListener('mousemove', function (e) {
-		//     //console.log("Mouse X: " + e.x + " Mouse Y: " + e.y);
-		//     value = e.x * 0.001;
-		//     console.log(value);
-		//      oscillators.forEach(function(osc, i){
-		//            osc.frequency.rampTo(baseFreq * i * value, 0.2);
-		//       });
-		// })
+		// Mouse Interaction // 
+		//NOTE: Comment out for full automated frequencies//
+
+		window.addEventListener('mousemove', function (e) {
+		    //console.log("Mouse X: " + e.x + " Mouse Y: " + e.y);
+		    value = e.x * 0.001;
+		    console.log(value);
+		     oscillators.forEach(function(osc, i){
+		           osc.frequency.rampTo(baseFreq * i * value, 0.2);
+		      });
+		})
 
 
   </script>
