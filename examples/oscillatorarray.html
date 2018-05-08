@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Tone.js Examples by M.Romeo</title>
+	<script language="javascript" type="text/javascript" src="../lib/Tone.min.js"></script>
+  	<script language="javascript" type="text/javascript">
+		
+		//Examples Oscillator Array//
+		var counter = 0;
+		var counterMax = 2;
+		var beat = ["4n","8n","16n","32n"];
+		var oscAmt = 8;
+		var oscillators = [];
+		var baseFreq = 50;
+
+		  //Tone js Instruments//
+
+		  //Single Noise Oscillator//
+		  var noise = new Tone.Noise().toMaster();
+		  noise.start();
+		  noise.volume.value = -20; //initial level
+		  noise.send("reverb");
+		  noise.send("delay");
+
+		  //Array Sine Oscillators//
+		  for (var i = 0; i < oscAmt; i++){
+		        oscillators.push(new Tone.Oscillator({
+		        "frequency" : baseFreq * i,
+		        "type" :  "triangle",
+		        "volume" : -10,
+		        "detune" : Math.random() * 30 - 15
+		      }).toMaster().start());
+
+		      oscillators[i].send("reverb", -10);
+		      oscillators[i].send("delay", -5);
+		    }
+
+		  //Tone js Effects//
+		  var reverb = new Tone.Freeverb(0.95, 4000).receive("reverb").toMaster();
+		  var delay = new Tone.FeedbackDelay(beat[1],0.75).receive("delay").toMaster();
+
+		  //Tone js Transport//
+		  Tone.Master.volume.value = -20;
+		  Tone.Master.bpm = 160;
+
+		  //Logic Automation//
+
+		  function loopCallback(time){
+		      counter++;
+		      counter = counter % counterMax;
+		      if(counter == counterMax - 1) {
+		          var r = Math.random()*10;
+		          var index = Math.abs(Math.round(Math.random()*oscAmt - 1));
+		          var vIndex = -Math.round(Math.random()*30);
+		          oscillators[index].frequency.rampTo(baseFreq * r, 5)
+		          oscillators[index].volume.rampTo(vIndex, 0.4)
+		          noise.volume.rampTo(vIndex - 20, 1);
+		          console.log("Ramp osc at index: " + index + " volume " + vIndex );
+		        }
+		      }
+
+		    var loop = new Tone.Loop(loopCallback, 2);
+		    loop.start(0);
+		    Tone.Transport.start(0);
+
+		// Mouse Interaction // 
+		//NOTE: Comment out for full automated frequencies//
+
+		window.addEventListener('mousemove', function (e) {
+		    //console.log("Mouse X: " + e.x + " Mouse Y: " + e.y);
+		    value = e.x * 0.001;
+		    console.log(value);
+		     oscillators.forEach(function(osc, i){
+		           osc.frequency.rampTo(baseFreq * i * value, 0.2);
+		      });
+		})
+
+
+  </script>
+  
+
+  <style>
+
+  body { padding: 20px; margin: 0; } 
+  html *
+		{
+		   font-size: 1em;
+		   color: white;
+		   font-family: Arial;
+		}
+  li {  padding: 20px; }
+  #top {
+  	outline:1px solid white;
+  	outline-color:white;
+  	background-color:black;
+  	color:white;
+  	padding:20px;
+  }
+  </style> 
+
+</head>
+<body style="text-align:center; background-color:black">
+
+
+
+</body>
+</html>

@@ -1,30 +1,47 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>NS Interactive Album</title>
-	
-	<link rel="stylesheet" type="text/css" href="index.css">
-	<link rel="icon" href="assets/nslogo.ico" type="image/x-icon"/>
-	<link rel="shortcut icon" href="assets/nslogo.ico" type="image/x-icon"/>
+	<title>Tone.js Examples by M.Romeo</title>
+  <script language="javascript" type="text/javascript" src="lib/Tone.min.js"></script>
+  
+  <!--<script language="javascript" type="text/javascript" src="examples/oscillator_modulation/osc_mod.js"></script>-->
+  <!--<script language="javascript" type="text/javascript" src="examples/oneshot_sample/oneshot.js"></script>-->
+  <!--<script language="javascript" type="text/javascript" src="examples/osc_array/oscarray.js"></script>-->
+
+  <style>
+
+  body { padding: 20px; margin: 0; } 
+  html *
+		{
+		   font-size: 1em;
+		   color: white;
+		   font-family: Arial;
+		}
+  li {  padding: 25px; }
+
+  #top {
+  	outline:1px solid white;
+  	outline-color:white;
+  	background-color:black;
+  	color:white;
+  	padding:20px;
+  }
+  </style> 
+
 </head>
-<body>
+<body style="text-align:center; background-color:black">
+
 	<div id="top">
-		<video id="glass" width="640" height="480" autoplay loop>
-	        <source src="assets/videos/main.mov" type="video/mp4">
-	    </video>
-		<!--<h1>NS Interactive Album</h1>-->
-		<img src="assets/nslogo.png"></img>
+		<h1 style="font-size:3em">Tone JS examples by M.Romeo</h1>
 	</div>
 	<div id="links">
 		<ul style="list-style-type:none">
-		  <li><a href="songs/song1.html">Song 1</a></li>
-		  <li><a href="songs/song2.html">Song 2</a></li>
-		  <li><a href="songs/song3.html">Song 3</a></li>
-		  <li><a href="songs/song4.html">Song 4</a></li>
-		  <li><a href="songs/song5.html">Song 5</a></li>
-		  <li><a href="songs/about.html">About</a></li>
+		  <li><a href="examples/arpeggiator.html">Arpeggiator</a></li>
+		  <li><a href="examples/oneshotsample.html">One Shot Sampler</a></li>
+		  <li><a href="examples/oscillatorarray.html">Array of Oscillators</a></li>
+		  <li><a href="examples/modulation.html">Modulation</a></li>
+
 		</ul>  
 	</div>
 
