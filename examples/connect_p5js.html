@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Tone.js Examples by M.Romeo</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js" integrity="sha512-rMaqGbYalDaQz0lWNF2L8DHPtf4NW+gSZomExS0LcsNyRS4Rmj21+dt97XfXCZE/E569eX72Bh//Jt1EpStgiA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.68/Tone.js" integrity="sha512-eBjUIAF/NN5kcGlFXz5n9UMAv+LKYFqtGnqHu83qQCXRJaL6iSsjFeOdft9AK9lD/9meTkj/5ctn6DGV5rz6Pg==" crossorigin="anonymous"></script>
+  	<script language="javascript" type="text/javascript">
+
+		
+
+ //audio code//
+  const osc = new Tone.Oscillator({
+			type: "square",
+			frequency: 440,
+			volume: -16
+		}).toDestination();
+
+		osc.stop();
+
+
+var x, y;
+let button;
+
+function setup() {
+  createCanvas(400,400);
+  button = createButton('Start Audio');
+  button.position(19, 19);
+  button.mousePressed(toneStart);
+
+
+ 
+
+}
+
+function draw() {
+  background(0);
+  fill(200);
+  ellipse(x,y,50);
+  let debug = 'x: ' + x + ' y: ' + y;
+  text(debug, x, y + 25, 70, 80); 
+  console.log(osc.frequency.value);
+}
+
+function mouseMoved() {
+	x = mouseX;
+	y = mouseY;
+
+	oscfreq = map(x, 0, 400, 0, 400);
+	osc.frequency.rampTo(parseFloat(oscfreq), 1.0);
+
+}
+
+function toneStart() {
+ 
+  osc.start();
+}
+
+
+  </script>
+  
+
+  <style>
+
+  body { padding: 20px; margin: 0; } 
+  html *
+		{
+		   font-size: 1em;
+		   color: white;
+		   font-family: Arial;
+		}
+  li {  padding: 20px; }
+  #top {
+  	outline:1px solid white;
+  	outline-color:white;
+  	background-color:black;
+  	color:white;
+  	padding:20px;
+  }
+  </style> 
+
+</head>
+<body style="text-align:center; background-color:black">
+
+
+
+</body>
+</html>
